@@ -9,4 +9,32 @@ import BookService from "./services/book-service.js";
 
 const bService = new BookService()
 
-const books = bService.getBooks()
+const booksPromise = bService.getBooks();
+booksPromise.then(books => render(books));
+
+function render(books){
+    
+    const mainContainer = document.getElementById('books-container');
+    mainContainer.innerText = '';
+
+    for (let i = 0; i < books.length; i++) {
+        const book = books[i];
+
+        const bookContainer = document.createElement('a');
+        bookContainer.classList.add('book-card');
+        bookContainer.href = "/detail.html?id=" + book.id;
+
+        const img = document.createElement('img');
+        img.src = book.image;
+        bookContainer.appendChild(img);
+
+        const titleH = document.createElement('h3');
+        const titleNode = document.createTextNode(book.title);
+        titleH.appendChild(titleNode);
+        bookContainer.appendChild(titleH);
+
+
+        mainContainer.appendChild(bookContainer)
+        
+    }
+}
