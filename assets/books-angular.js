@@ -1,4 +1,4 @@
-[
+const demoBooks = [
     {
       "id": 26184,
       "title": "Simple Sabotage Field Manual",
